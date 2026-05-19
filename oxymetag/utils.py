@@ -64,14 +64,14 @@ def run_kraken2_setup():
     db_path.mkdir(exist_ok=True)
     
     try:
-        cmd = ['kraken2-build', '--download-taxonomy', '--db', str(db_path)]
+        cmd = ['kraken2-build', '--download-taxonomy', '--db', str(db_path), '--use-ftp']
         logger.info("Downloading taxonomy...")
         subprocess.run(cmd, check=True)
         logger.info("Taxonomy downloaded successfully")
         
         libraries = ['bacteria', 'archaea', 'viral']
         for lib in libraries:
-            cmd = ['kraken2-build', '--download-library', lib, '--db', str(db_path)]
+            cmd = ['kraken2-build', '--download-library', lib, '--db', str(db_path),'--use-ftp']
             logger.info(f"Downloading {lib} library...")
             subprocess.run(cmd, check=True)
             logger.info(f"{lib} library downloaded successfully")
